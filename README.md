@@ -1,6 +1,6 @@
 # booking-buddy
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Contributors ✨
@@ -13,6 +13,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/crigolo"><img src="https://avatars.githubusercontent.com/u/90223690?v=4?s=100" width="100px;" alt=""/><br /><sub><b>crigolo</b></sub></a><br /><a href="https://github.com/coding-armadillo/booking-buddy/commits?author=crigolo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kabloosh1234"><img src="https://avatars.githubusercontent.com/u/90011938?v=4?s=100" width="100px;" alt=""/><br /><sub><b>kabloosh1234</b></sub></a><br /><a href="https://github.com/coding-armadillo/booking-buddy/commits?author=kabloosh1234" title="Code">💻</a></td>
   </tr>
 </table>
 
