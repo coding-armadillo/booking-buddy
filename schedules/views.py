@@ -12,3 +12,6 @@ def index(request):
         "now": make_aware(current_time)
     }
     return render(request, "schedules/index.html", context)
+
+def about(request):
+    return HttpResponse("Hi")
