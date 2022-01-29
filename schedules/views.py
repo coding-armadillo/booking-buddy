@@ -10,7 +10,8 @@ from django.utils.timezone import make_aware
 def index(request):
     current_time = datetime.now()
     context = {
-        "now": make_aware(current_time)
+        "now": make_aware(current_time),
+        "dates" : list(range(1,31))
     }
     return render(request, "schedules/index.html", context)
 
