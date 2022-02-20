@@ -5,11 +5,12 @@ from django.http import HttpResponse
 
 from datetime import datetime
 from django.utils.timezone import make_aware
+from .models import Customer
 
 
 def index(request):
-    current_time = datetime.now()
-    context = {"now": make_aware(current_time)}
+
+    context = {"customers": Customer.objects.all()}
     return render(request, "customers/index.html", context)
 
 
