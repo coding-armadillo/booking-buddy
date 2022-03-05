@@ -7,7 +7,7 @@ class Schedules(models.Model):
     EndTime = models.DateTimeField(max_length=100)
     name = models.CharField(max_length=100)
     cell = models.CharField(max_length=100)
-    LengthInMinutes = models.IntegerField(max_length=100)
+    LengthInMinutes = models.IntegerField()
     tag = models.CharField(max_length=100)
 
     def __str__(self):
