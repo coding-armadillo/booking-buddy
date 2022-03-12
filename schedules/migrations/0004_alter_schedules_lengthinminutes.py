@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('schedules', '0003_rename_length_schedules_lengthinminutes'),
+        ("schedules", "0003_rename_length_schedules_lengthinminutes"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='schedules',
-            name='LengthInMinutes',
+            model_name="schedules",
+            name="LengthInMinutes",
             field=models.IntegerField(),
         ),
     ]
