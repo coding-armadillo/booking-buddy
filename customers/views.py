@@ -6,23 +6,25 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.utils.timezone import make_aware
 from .models import Customer
+from schedules.models import Schedules
 
 
 def index(request):
-
-    context = {"customers": Customer.objects.all()}
-    return render(request, "customers/index.html", context)
     customers = []
-    for customer in Customer.object.all():
+    for customer in Customer.objects.all():
         result = {
             "first_name": customer.first_name,
             "last_name": customer.last_name,
-            "cell": customer_cell,
-            "email": customer_email,
-            "number_of_appointments": 100,
+            "cell": customer.cell,
+            "email": customer.email,
+            "number_of_appointments": 0,
         }
-
+        result["number_of_appointments"] = Schedules.objects.filter(
+            Customer=customer
+        ).count()
         customers.append(result)
+    context = {"customers": customers}
+    return render(request, "customers/index.html", context)
 
 
 def about(request):
