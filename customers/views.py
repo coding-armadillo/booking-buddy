@@ -12,6 +12,17 @@ def index(request):
 
     context = {"customers": Customer.objects.all()}
     return render(request, "customers/index.html", context)
+    customers = []
+    for customer in Customer.object.all():
+        result = {
+            "first_name": customer.first_name,
+            "last_name": customer.last_name,
+            "cell": customer_cell,
+            "email": customer_email,
+            "number_of_appointments": 100,
+        }
+
+        customers.append(result)
 
 
 def about(request):
