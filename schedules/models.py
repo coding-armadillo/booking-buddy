@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
 from customers.models import Customer
 
 # Create your models here.
@@ -15,7 +15,6 @@ class Service(models.Model):
 
 class Schedules(models.Model):
     StartTime = models.DateTimeField(max_length=100)
-    EndTime = models.DateTimeField(max_length=100)
     Customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     ServiceTable = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
 
@@ -23,14 +22,17 @@ class Schedules(models.Model):
         result = ""
         if self.Customer:
             result += str(self.Customer)
+        EndTime = self.StartTime + timedelta(minutes=self.ServiceTable.LengthInMinutes)
         result += (
             " "
             + datetime.strftime(self.StartTime, "%x")
             + ", "
             + datetime.strftime(self.StartTime, "%X")
-            + "  ->  "
-            + datetime.strftime(self.EndTime, "%X")
             + " "
+            + "  "
+            + " to "
+            + datetime.strftime(EndTime, "%X")
+            + "   "
         )
         if self.ServiceTable:
             result += str(self.ServiceTable)

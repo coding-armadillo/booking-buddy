@@ -4,13 +4,23 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
 from .models import Schedules
 
 
 def index(request):
-    schedules = Schedules.objects.all()
+    schedules = []
+    for schedule in Schedules.objects.all():
+        result = {
+            "StartTime": schedule.StartTime,
+            "EndTime": schedule.StartTime
+            + timedelta(minutes=schedule.ServiceTable.LengthInMinutes),
+            "Customer": schedule.Customer,
+            "ServiceTable": schedule.ServiceTable,
+        }
+        schedules.append(result)
+
     context = {"schedules": schedules}
     return render(request, "schedules/index.html", context)
 
