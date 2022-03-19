@@ -3,37 +3,35 @@ from datetime import datetime
 from customers.models import Customer
 
 # Create your models here.
+class Service(models.Model):
+    Service = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    LengthInMinutes = models.IntegerField()
+    Charge = models.FloatField()
+
+    def __str__(self):
+        return self.type
+
+
 class Schedules(models.Model):
     StartTime = models.DateTimeField(max_length=100)
     EndTime = models.DateTimeField(max_length=100)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
-    LengthInMinutes = models.IntegerField()
-    tag = models.CharField(max_length=100)
+    Customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    ServiceTable = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        if not self.customer:
-            return (
-                datetime.strftime(self.StartTime, "%x")
-                + ", "
-                + datetime.strftime(self.StartTime, "%X")
-                + "  ->  "
-                + datetime.strftime(self.EndTime, "%X")
-                + " ,     type: "
-                + self.tag
-            )
-
-        return (
-            self.customer.first_name
-            + " "
-            + self.customer.last_name
-            + " "
+        result = ""
+        if self.Customer:
+            result += str(self.Customer)
+        result += (
+            " "
             + datetime.strftime(self.StartTime, "%x")
             + ", "
             + datetime.strftime(self.StartTime, "%X")
             + "  ->  "
             + datetime.strftime(self.EndTime, "%X")
-            + ",       phone: "
-            + self.customer.cell
-            + " ,     type: "
-            + self.tag
+            + " "
         )
+        if self.ServiceTable:
+            result += str(self.ServiceTable)
+        return result
