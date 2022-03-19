@@ -133,7 +133,7 @@
                     <th
                       class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"
                     >
-                      Name
+                      First name
                     </th>
                     <th
                       class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"
@@ -150,6 +150,11 @@
                     >
                       Email
                     </th>
+                    <th
+                    class="text-left py-3 px-4 uppercase font-semibold text-sm"
+                  >
+                  Next Appointment
+                  </th>
                   </tr>
                 </thead>
                 <tbody class="text-gray-700">
@@ -174,6 +179,9 @@
                         href="mailto:{{customer.email}}"
                         >{{customer.email}}</a
                       >
+                    </td>
+                    <td class="w-1/3 text-left py-3 px-4">
+                      {{customer.number_of_appointments}}
                     </td>
                   </tr>
                   {%endfor%}
