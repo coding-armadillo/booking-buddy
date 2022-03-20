@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/x-icon" href="https://cdn0.iconfinder.com/data/icons/pinpoint-interface/48/reservations_copy-256.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customers</title>
@@ -132,7 +133,7 @@
                     <th
                       class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"
                     >
-                      Name
+                      First name
                     </th>
                     <th
                       class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"
@@ -149,6 +150,11 @@
                     >
                       Email
                     </th>
+                    <th
+                    class="text-left py-3 px-4 uppercase font-semibold text-sm"
+                  >
+                  Next Appointment
+                  </th>
                   </tr>
                 </thead>
                 <tbody class="text-gray-700">
@@ -174,6 +180,9 @@
                         >{{customer.email}}</a
                       >
                     </td>
+                    <td class="w-1/3 text-left py-3 px-4">
+                      {{customer.number_of_appointments}}
+                    </td>
                   </tr>
                   {%endfor%}
                 </tbody>
@@ -185,7 +194,7 @@
         <footer class="w-full bg-white text-right p-4">
           Built by
           <a target="_blank" href="https://davidgrzyb.com" class="underline"
-            >Yes</a
+            >{{schedules.StartTime}}</a
           >.
         </footer>
       </div>
