@@ -22,7 +22,10 @@ class Schedules(models.Model):
         result = ""
         if self.Customer:
             result += str(self.Customer)
-        EndTime = self.StartTime + timedelta(minutes=self.ServiceTable.LengthInMinutes)
+        LengthInMinutes = 60
+        if self.ServiceTable:
+            LengthInMinutes = self.ServiceTable.LengthInMinutes
+        EndTime = self.StartTime + timedelta(minutes=LengthInMinutes)
         result += (
             " "
             + datetime.strftime(self.StartTime, "%x")
