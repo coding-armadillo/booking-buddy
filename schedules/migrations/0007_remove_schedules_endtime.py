@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('schedules', '0006_service_remove_schedules_lengthinminutes_and_more'),
+        ("schedules", "0006_service_remove_schedules_lengthinminutes_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='schedules',
-            name='EndTime',
+            model_name="schedules",
+            name="EndTime",
         ),
     ]

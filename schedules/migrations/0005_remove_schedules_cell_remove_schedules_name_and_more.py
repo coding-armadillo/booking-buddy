@@ -7,22 +7,26 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('customers', '0004_remove_customer_appointments'),
-        ('schedules', '0004_alter_schedules_lengthinminutes'),
+        ("customers", "0004_remove_customer_appointments"),
+        ("schedules", "0004_alter_schedules_lengthinminutes"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='schedules',
-            name='cell',
+            model_name="schedules",
+            name="cell",
         ),
         migrations.RemoveField(
-            model_name='schedules',
-            name='name',
+            model_name="schedules",
+            name="name",
         ),
         migrations.AddField(
-            model_name='schedules',
-            name='customer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='customers.customer'),
+            model_name="schedules",
+            name="customer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="customers.customer",
+            ),
         ),
     ]
