@@ -30,8 +30,8 @@ def index(request):
         )
 
         customers.append(result)
-        context = {"customers": customers}
-        return render(request, "customers/index.html", context)
+    context = {"customers": customers}
+    return render(request, "customers/index.html", context)
 
 
 def about(request):
