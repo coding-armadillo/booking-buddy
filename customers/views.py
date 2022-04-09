@@ -22,9 +22,16 @@ def index(request):
         result["number_of_appointments"] = Schedules.objects.filter(
             Customer=customer
         ).count()
+
+        result["next_appointment"] = (
+            Schedules.objects.filter(Customer=customer, StartTime__gt=datetime.now())
+            .order_by("StartTime")
+            .first()
+        )
+
         customers.append(result)
-    context = {"customers": customers}
-    return render(request, "customers/index.html", context)
+        context = {"customers": customers}
+        return render(request, "customers/index.html", context)
 
 
 def about(request):
