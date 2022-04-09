@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
 from .models import Schedules
-from calendar import calendar, setfirstweekday
+import calendar
 
 
 def index(request):
