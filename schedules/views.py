@@ -11,6 +11,7 @@ import calendar
 
 
 def index(request):
+    now = datetime.now()
     schedules = []
     for schedule in Schedules.objects.all():
         result = {
@@ -21,20 +22,23 @@ def index(request):
             "ServiceTable": schedule.ServiceTable,
         }
         schedules.append(result)
-    day = datetime.now().day
-    dates = [
-        [None, 1, 2, 3, 4, 5, 6],
-        [7, 8, 9, 10, 11, 12, 13],
-        [14, 15, 16, 17, 18, 19, 20],
-        [day - 6, day - 5, day - 4, day - 3, day - 2, day - 1, day],
-        [day + 1, day + 2, day + 3, 31, None, None, None],
-    ]
+    day = now.day
+    dates = []
 
     calendar.setfirstweekday(6)
-    c = calendar.month(2022, 3, w=2)
+    calen = calendar.month(now.year, now.month, w=2)
+    lines = calen.strip().split("\n")[2:]
+    calen = 0
+    for line in lines:
+        days = line.split()
+        if calen == 0 and len(days) < 7:
+            days = [None] * (7 - len(days)) + days
+        dates.append(days)
+        calen += 1
 
-    month = datetime.now().month
-    year = datetime.now().year
+    month = now.month
+    year = now.year
+    date = now.day
 
     if month == 1:
         month = "January"
@@ -61,7 +65,13 @@ def index(request):
     elif month == 12:
         month = "December"
 
-    context = {"schedules": schedules, "dates": dates, "month": month, "year": year}
+    context = {
+        "schedules": schedules,
+        "dates": dates,
+        "month": month,
+        "year": year,
+        "date": day,
+    }
     return render(request, "schedules/index.html", context)
 
 
@@ -70,7 +80,8 @@ def about(request):
 
 
 def calender(request, month):
-    current_month = datetime.now().month
+    now = datetime.now()
+    current_month = now.month
     return HttpResponse(
         f"the month is {current_month} this also isn't done pls go away"
     )
