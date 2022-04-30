@@ -7,7 +7,6 @@
     <title>Customers</title>
     <meta name="ben" content="dov" />
     <meta name="description" content="" />
-
     <!-- Tailwind -->
     <link
       href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -15,15 +14,12 @@
     />
     <style>
       @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
-
       .font-family-karla {
         font-family: karla;
       }
-
       .bg-sidebar {
         background: #bec2ff;
       }
-
       .cta-btn {
         color: #bec2ff;
       }
@@ -49,25 +45,31 @@
       }
     </style>
   </head>
-
   <body class="bg-gray-100 font-family-karla flex">
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
       <div class="p-6">
         <a
           href="index.html"
           class="text-white text-3xl font-semibold uppercase hover:text-gray-300"
-          >Customers</a
+          >Booking Buddy</a
         >
         
       </div>
       <nav class="text-white text-base font-semibold pt-3">
         <a
-          href="index.html"
+          href= {% url "schedules:index" %}
           class="flex items-center active-nav-link text-white py-4 pl-6 nav-item"
         >
-          <i class="fas fa-tachometer-alt mr-3"></i>
+        <i class="fas fa-calendar-alt mr-3"></i>
+        Schedules
+      </a>
+        <a
+        href= {% url "customers:index" %}
+        class="flex items-center active-nav-link text-white py-4 pl-6 nav-item"
+      >
+          <i class="fas fa-user-alt mr-3"></i>
           Customers
-        </a>
+      </a>
     </aside>
 
     <div class="w-full flex flex-col h-screen overflow-y-hidden bg-blue-200">
@@ -129,7 +131,6 @@
             <div class="bg-white overflow-auto divide divide-dashed">
               <table class="min-w-full bg-white">
                 <thead class="bg-gray-800 text-white">
-                  <tr>
                     <th
                       class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"
                     >
@@ -159,7 +160,6 @@
                 </thead>
                 <tbody class="text-gray-700">
                   {%for customer in customers%}
-                  <tr>
                     <td class="w-1/3 text-left py-3 px-4">
                       {{customer.first_name}}
                     </td>
