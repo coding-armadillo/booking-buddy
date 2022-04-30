@@ -10,4 +10,3 @@ for line in lines:
     if c == 0 and len(days) < 7:
         days = [None] * (7 - len(days)) + days
     print(days)
-print(datetime.now().day)

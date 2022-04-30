@@ -10,7 +10,7 @@ class Service(models.Model):
     Charge = models.FloatField()
 
     def __str__(self):
-        return self.type
+        return self.Service
 
 
 class Schedules(models.Model):
