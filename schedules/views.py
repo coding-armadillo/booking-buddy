@@ -13,7 +13,10 @@ import calendar
 def index(request):
     now = datetime.now()
     schedules = []
-    for schedule in Schedules.objects.all():
+    for schedule in Schedules.objects.filter(
+        StartTime__month=now.month, StartTime__year=now.year
+    ):
+
         result = {
             "StartTime": schedule.StartTime,
             "EndTime": schedule.StartTime
@@ -82,6 +85,4 @@ def about(request):
 def calender(request, month):
     now = datetime.now()
     current_month = now.month
-    return HttpResponse(
-        f"the month is {current_month} this also isn't done pls go away"
-    )
+    return HttpResponse(f"the month is {month} this also isn't done pls go away")
