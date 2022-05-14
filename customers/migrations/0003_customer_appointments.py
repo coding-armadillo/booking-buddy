@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('schedules', '0004_alter_schedules_lengthinminutes'),
-        ('customers', '0002_remove_customer_name_customer_first_name_and_more'),
+        ("schedules", "0004_alter_schedules_lengthinminutes"),
+        ("customers", "0002_remove_customer_name_customer_first_name_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customer',
-            name='appointments',
-            field=models.ManyToManyField(to='schedules.Schedules'),
+            model_name="customer",
+            name="appointments",
+            field=models.ManyToManyField(to="schedules.Schedules"),
         ),
     ]
