@@ -11,13 +11,13 @@
             tabindex="0"
             class="focus:outline-none text-base font-bold dark:text-gray-100 text-gray-800"
           >
-            {{month}} {{date}}, {{year}}
+            {{month}}, {{year}}
           </span>
           <div class="flex items-center">
             <a
               aria-label="calendar backward"
               class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
-              href="https://www.google.com/"
+              href='{% url "schedules:calendar" prev_year prev_month %}'
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@
             <a
               aria-label="calendar forward"
               class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"
-              href="https://www.google.com/"
+              href='{% url "schedules:calendar" next_year next_month %}'
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
