@@ -1,5 +1,5 @@
 from calendar import month_name
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
@@ -12,9 +12,18 @@ import calendar
 
 def index(request):
     now = datetime.now()
+    return redirect("schedules:calendar", now.year, now.month)
+
+
+def about(request):
+    return HttpResponse("this is not done go away")
+
+
+def get_calendar(request, year, month):
+
     schedules = []
     for schedule in Schedules.objects.filter(
-        StartTime__month=now.month, StartTime__year=now.year
+        StartTime__month=month, StartTime__year=year
     ):
 
         result = {
@@ -25,11 +34,10 @@ def index(request):
             "ServiceTable": schedule.ServiceTable,
         }
         schedules.append(result)
-    day = now.day
     dates = []
 
     calendar.setfirstweekday(6)
-    calen = calendar.month(now.year, now.month, w=2)
+    calen = calendar.month(year, month, w=2)
     lines = calen.strip().split("\n")[2:]
     calen = 0
     for line in lines:
@@ -39,14 +47,21 @@ def index(request):
         dates.append(days)
         calen += 1
 
-    month = now.month
-    year = now.year
-    date = now.day
+    next_year = year
+    prev_year = year
+    next_month = month + 1
+    if next_month > 12:
+        next_month = 1
+        next_year = next_year + 1
+    prev_month = month - 1
+    if prev_month < 1:
+        prev_month = 12
+        prev_year = prev_year - 1
 
     if month == 1:
         month = "January"
     elif month == 2:
-        month = "Febuary"
+        month = "Feburary"
     elif month == 3:
         month = "March"
     elif month == 4:
@@ -73,16 +88,9 @@ def index(request):
         "dates": dates,
         "month": month,
         "year": year,
-        "date": day,
+        "next_month": next_month,
+        "prev_month": prev_month,
+        "next_year": next_year,
+        "prev_year": prev_year,
     }
     return render(request, "schedules/index.html", context)
-
-
-def about(request):
-    return HttpResponse("this is not done go away")
-
-
-def calender(request, month):
-    now = datetime.now()
-    current_month = now.month
-    return HttpResponse(f"the month is {month} this also isn't done pls go away")
