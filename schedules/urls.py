@@ -8,7 +8,7 @@ urlpatterns = [
     path("calendar/<int:year>/<int:month>/", views.get_calendar, name="calendar"),
     path(
         "calendar/<int:year>/<int:month>/<int:day>",
-        views.get_daily_calendar,
+        views.get_calendar,
         name="calendardaily",
     ),
 ]
