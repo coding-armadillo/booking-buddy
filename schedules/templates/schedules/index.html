@@ -12,7 +12,7 @@
             class="focus:outline-none text-base font-bold dark:text-gray-100 text-gray-800"
           >
             <a href='{% url "schedules:calendar" year month_num%}'>
-              {{month}}, {{year}}
+              {{month}} {{day}}, {{year}}
             </a>
           </span>
           <div class="flex items-center">
@@ -165,7 +165,7 @@
         </p>
       </div>
     </div>
-    <div class="bg-white py-4 mdpy-7 px-4 md:px-8 xl:px-10 rounded-lg">
+    <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-lg">
       <div class="sm:flex items-center justify-between">
         <div class="flex items-center">
           <a
