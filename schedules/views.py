@@ -12,7 +12,7 @@ import calendar
 
 def index(request):
     now = datetime.now()
-    return redirect("schedules:calendar", now.year, now.month, now.day)
+    return redirect("schedules:calendardaily", now.year, now.month, now.day)
 
 
 def about(request):
