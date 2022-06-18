@@ -12,19 +12,28 @@ import calendar
 
 def index(request):
     now = datetime.now()
-    return redirect("schedules:calendar", now.year, now.month)
+    return redirect("schedules:calendar", now.year, now.month, now.day)
 
 
 def about(request):
     return HttpResponse("this is not done go away")
 
 
-def get_calendar(request, year, month):
+def get_calendar(request, year, month, day=None):
+    if day:
+        is_monthly = False
+    else:
+        is_monthly = True
 
     schedules = []
-    for schedule in Schedules.objects.filter(
-        StartTime__month=month, StartTime__year=year
-    ):
+    kwargs = {
+        "StartTime__year": year,
+        "StartTime__month": month,
+    }
+    if day:
+        kwargs["StartTime__day"] = day
+    schedules = []
+    for schedule in Schedules.objects.filter(**kwargs):
 
         result = {
             "StartTime": schedule.StartTime,
@@ -58,6 +67,7 @@ def get_calendar(request, year, month):
         prev_month = 12
         prev_year = prev_year - 1
 
+    month_num = month
     if month == 1:
         month = "January"
     elif month == 2:
@@ -88,6 +98,9 @@ def get_calendar(request, year, month):
         "dates": dates,
         "month": month,
         "year": year,
+        "day:": day,
+        "is_monthly": is_monthly,
+        "month_num": month_num,
         "next_month": next_month,
         "prev_month": prev_month,
         "next_year": next_year,
