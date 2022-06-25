@@ -1,13 +1,10 @@
-from calendar import c, month_name
-from django.shortcuts import render, redirect
-
-# Create your views here.
-from django.http import HttpResponse
-
-from datetime import datetime, timedelta
-from django.utils.timezone import make_aware
-from .models import Schedules
 import calendar
+from datetime import datetime, timedelta
+
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from .models import Schedules
 
 
 def index(request):
@@ -152,6 +149,7 @@ def get_calendar(request, year, month, day=None):
         "prev_year": prev_year,
         "color": color,
     }
+
     print(day)
     print(schedules)
     return render(request, "schedules/index.html", context)

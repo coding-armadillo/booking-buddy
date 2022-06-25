@@ -1,11 +1,9 @@
+from datetime import datetime
+
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-from django.http import HttpResponse
-
-from datetime import datetime
-from django.utils.timezone import make_aware
-from .models import Customer
+from customers.models import Customer
 from schedules.models import Schedules
 
 
