@@ -29,7 +29,7 @@
                   Booking Buddy.
                 </h1>
                 <p class="mt-4 text-lg text-blueGray-200">
-                  This is a great was to view your customly made schedules and keep track of them in a simple webpage.
+                  This is a great website to view your customly made schedules and keep track of them in a simple webpage.
                 </p>
               </div>
             </div>
@@ -93,11 +93,19 @@
       </div>
     </div>
   </div>
-  <div class= "place-content-center">
-  <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-12 px-24 rounded-full text-3xl ">
-    Open Booking Buddy
-  </button>
-</div>  
+  <a href='{% url "schedules:index" %}'>
+  <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-4 px-16 rounded-full text-3xl items-start
+  flex items-center justify-center ">
+            Open Schedules page
+  </button> 
+</a>
+<br>
+<br>
+<a href='{% url "customers:index" %}'>
+  <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-4 px-16 rounded-full text-3xl md:drop-shadow-xl items-end
+  flex items-center justify-center ">
+            Open Customers page
+  </button> 
 <br>
 <br>
 <br>
