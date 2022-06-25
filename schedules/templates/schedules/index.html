@@ -12,7 +12,7 @@
             class="focus:outline-none text-base font-bold dark:text-gray-100 text-gray-800"
           >
             <a href='{% url "schedules:calendar" year month_num%}'>
-              {{month}} {{day}}, {{year}}
+              {{month}} {%if day%}{{day}} {%endif%}, {{year}}
             </a>
           </span>
           <div class="flex items-center">
@@ -132,15 +132,16 @@
             <tbody>
               {% for week in dates %}
               <tr>
-                {% for day in week %}
+                {% for aday in week %}
                 <td class="pt-6">
                   <div
                     class="px-2 py-2 cursor-pointer flex w-full justify-center"
                   >
-                    {% if day %}
+                    {% if aday %}
                     <a
-                      href='{% url "schedules:calendardaily" year month_num day %}'
-                      >{{day}}</a
+                      class="{%if day == aday%} bg-indigo-200 text-gray-900 text-lg rounded-3xl px-3 py-1 {%else%} {%endif%}"
+                      href='{% url "schedules:calendardaily" year month_num aday %}'
+                      >{{aday}}</a
                     >
                     {% endif %}
                   </div>
@@ -162,6 +163,9 @@
           class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 rounded-lg"
         >
           {%if is_monthly%} Monthly {%else%} Daily {%endif%}Appointments
+          <span class="bg-{{color}} sm:text-2xl px-3 py-2 rounded-3xl"
+            >{{schedules|length}}</span
+          >
         </p>
       </div>
     </div>
