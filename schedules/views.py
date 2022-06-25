@@ -153,4 +153,5 @@ def get_calendar(request, year, month, day=None):
         "color": color,
     }
     print(day)
+    print(schedules)
     return render(request, "schedules/index.html", context)
