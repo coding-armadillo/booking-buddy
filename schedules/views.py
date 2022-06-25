@@ -1,4 +1,4 @@
-from calendar import month_name
+from calendar import c, month_name
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -93,17 +93,64 @@ def get_calendar(request, year, month, day=None):
     elif month == 12:
         month = "December"
 
+    if is_monthly:
+        if len(schedules) < 40:
+            color = "green-50"
+        elif len(schedules) < 75:
+            color = "green-200"
+        elif len(schedules) < 100:
+            color = "green-400"
+        elif len(schedules) < 150:
+            color = "yellow-300"
+        elif len(schedules) < 200:
+            color = "yellow-600"
+        elif len(schedules) < 240:
+            color = "red-500"
+        elif len(schedules) < 280:
+            color = "red-800"
+        elif len(schedules) < 300:
+            color = "red-900"
+        elif len(schedules) < 340:
+            color = "pink-900"
+        else:
+            color = "purple-900"
+    else:
+        if len(schedules) < 2:
+            color = "green-50"
+        elif len(schedules) < 3:
+            color = "green-200"
+        elif len(schedules) < 5:
+            color = "green-400"
+        elif len(schedules) < 7:
+            color = "yellow-300"
+        elif len(schedules) < 9:
+            color = "yellow-600"
+        elif len(schedules) < 11:
+            color = "red-500"
+        elif len(schedules) < 14:
+            color = "red-800"
+        elif len(schedules) < 17:
+            color = "red-900"
+        elif len(schedules) < 20:
+            color = "pink-900"
+        elif len(schedules) < 25:
+            color = "purple-900"
+        else:
+            color = "gray-900"
+
     context = {
         "schedules": schedules,
         "dates": dates,
         "month": month,
         "year": year,
-        "day:": day,
+        "day": str(day) if day else None,
         "is_monthly": is_monthly,
         "month_num": month_num,
         "next_month": next_month,
         "prev_month": prev_month,
         "next_year": next_year,
         "prev_year": prev_year,
+        "color": color,
     }
+    print(day)
     return render(request, "schedules/index.html", context)
