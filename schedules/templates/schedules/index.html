@@ -2,7 +2,7 @@
 
 <!-- content -->
 {% block content %}
-<div class="bg-white overflow-auto">
+<div class="bg-white min-h-screen overflow-auto">
   <div class="flex items-center justify-center py-8">
     <div class="max-w-lg w-full shadow-lg">
       <div class="md:p-8 p-5 dark:bg-blue-100 bg-white rounded-lg">
@@ -159,6 +159,7 @@
     <div class="px-4 md:px-10 py-4 w-full md:py-7">
       <div class="flex items-center justify-between">
         <a
+          href='{% url "schedules:make_appointment" %}'
           class="focus:ring-2 focus:ring-offset-2 text-lg rounded-3xl leading-none text-blue-100 py-7 px-7 bg-blue-300 rounded hover:bg-blue-400 focus:outline-none"
         >
           Add Schedules
