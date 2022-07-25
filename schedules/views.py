@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from .models import Schedules
+from .forms import AppointmentForm
+from .models import Schedules, Customer, Service
 
 
 def index(request):
@@ -150,6 +151,31 @@ def get_calendar(request, year, month, day=None):
         "color": color,
     }
 
-    print(day)
-    print(schedules)
     return render(request, "schedules/index.html", context)
+
+
+def make_appointment(request):
+
+    if request.method == "POST":
+        appointment_datetime = datetime.strptime(
+            request.POST.get("date"), "%a %b %d %Y"
+        )
+        appointment_datetime = appointment_datetime.replace(
+            hour=int(request.POST.get("time"))
+        )
+        customer = Customer.objects.get(id=request.POST.get("Customer"))
+        service = Service.objects.get(id=request.POST.get("ServiceTable"))
+
+        schedule = Schedules(
+            StartTime=appointment_datetime,
+            Customer=customer,
+            ServiceTable=service,
+        )
+        schedule.save()
+
+        now = datetime.now()
+        return redirect("schedules:calendardaily", now.year, now.month, now.day)
+
+    form = AppointmentForm()
+    context = {"form": form}
+    return render(request, "schedules/appointment.html", context)

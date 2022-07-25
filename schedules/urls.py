@@ -11,4 +11,9 @@ urlpatterns = [
         views.get_calendar,
         name="calendardaily",
     ),
+    path(
+        "make_appointment/",
+        views.make_appointment,
+        name="make_appointment",
+    ),
 ]
